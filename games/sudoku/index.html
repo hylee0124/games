@@ -236,6 +236,18 @@
       border-color: #9ecae8;
     }
 
+    .num:disabled {
+      border-color: #d8e0e8;
+      background: #eef2f6;
+      color: #95a3b3;
+      cursor: not-allowed;
+    }
+
+    .num:disabled:hover {
+      border-color: #d8e0e8;
+      background: #eef2f6;
+    }
+
     .btn.primary {
       background: #1476a8;
       border-color: #1476a8;
@@ -556,6 +568,7 @@
       mistakesEl.textContent = state.mistakes;
       filledEl.textContent = `${state.values.filter(Boolean).length}/81`;
       noteBtn.classList.toggle("active", state.noteMode);
+      updateNumberPadState();
     }
 
     function renderNumberPad() {
@@ -568,6 +581,20 @@
         btn.addEventListener("click", () => inputNumber(number));
         numberPadEl.appendChild(btn);
       }
+      updateNumberPadState();
+    }
+
+    function updateNumberPadState() {
+      const counts = Array(10).fill(0);
+      state.values.forEach((value) => {
+        if (value) counts[value] += 1;
+      });
+
+      numberPadEl.querySelectorAll(".num").forEach((btn) => {
+        const number = Number(btn.textContent);
+        btn.disabled = counts[number] >= 9;
+        btn.title = btn.disabled ? `${number}은 모두 사용되었습니다.` : "";
+      });
     }
 
     function selectCell(index) {
