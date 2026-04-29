@@ -189,6 +189,12 @@
       justify-content: center;
     }
 
+    .notes span.invalid {
+      color: #b4233c;
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+    }
+
     .panel {
       padding: 16px;
     }
@@ -519,6 +525,12 @@
       return rowOf(a) === rowOf(b) || colOf(a) === colOf(b) || boxOf(a) === boxOf(b);
     }
 
+    function isCandidateAvailable(index, number) {
+      return !state.values.some((value, otherIndex) => (
+        otherIndex !== index && value === number && isPeer(index, otherIndex)
+      ));
+    }
+
     function formatTime(ms) {
       const seconds = Math.floor(ms / 1000);
       const minutes = Math.floor(seconds / 60);
@@ -556,6 +568,9 @@
           for (let number = 1; number <= 9; number += 1) {
             const note = document.createElement("span");
             note.textContent = state.notes[index].has(number) ? number : "";
+            if (note.textContent && !isCandidateAvailable(index, number)) {
+              note.className = "invalid";
+            }
             notes.appendChild(note);
           }
           cell.appendChild(notes);
