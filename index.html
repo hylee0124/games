@@ -60,6 +60,34 @@
       font-weight: 800;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .shortcut {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 14px;
+      border: 1px solid #1476a8;
+      border-radius: 8px;
+      background: #1476a8;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 850;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .shortcut:hover {
+      background: #0f638e;
+      border-color: #0f638e;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -157,6 +185,15 @@
       .count {
         width: fit-content;
       }
+
+      .header-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .shortcut {
+        width: fit-content;
+      }
     }
   </style>
 </head>
@@ -167,7 +204,10 @@
         <h1>Games</h1>
         <p class="subtitle">HTML5로 만든 가벼운 브라우저 게임 모음입니다.</p>
       </div>
-      <div class="count">3 Games</div>
+      <div class="header-actions">
+        <a class="shortcut" href="./games/random-defense/">Random Defense 바로가기</a>
+        <div class="count">3 Games</div>
+      </div>
     </header>
 
     <section class="grid" aria-label="Game list">
