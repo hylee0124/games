@@ -117,7 +117,7 @@
     .board {
       display: grid;
       grid-template-columns: repeat(var(--cols), 1fr);
-      gap: 10px;
+      gap: var(--gap, 10px);
     }
 
     .card {
@@ -171,7 +171,7 @@
       border: 1px solid #cbd6e2;
       background: #fff;
       color: #20334c;
-      font-size: clamp(24px, 6vw, 44px);
+      font-size: clamp(18px, 5vw, 44px);
       font-weight: 900;
     }
 
@@ -317,6 +317,9 @@
               <option value="easy">쉬움 4x3</option>
               <option value="medium" selected>보통 4x4</option>
               <option value="hard">어려움 6x4</option>
+              <option value="large">도전 6x6</option>
+              <option value="wide">집중 8x6</option>
+              <option value="expert">전문가 8x8</option>
             </select>
             <button class="btn primary" id="newGameBtn" type="button">시작</button>
           </div>
@@ -344,11 +347,19 @@
   </div>
 
   <script>
-    const SYMBOLS = ["7", "★", "◆", "●", "♣", "♥", "☀", "☂", "♜", "⚑", "✚", "✦"];
+    const SYMBOLS = [
+      "7", "★", "◆", "●", "♣", "♥", "☀", "☂",
+      "♜", "⚑", "✚", "✦", "A", "B", "C", "D",
+      "E", "F", "G", "H", "J", "K", "L", "M",
+      "N", "P", "Q", "R", "S", "T", "W", "Z"
+    ];
     const LEVELS = {
       easy: { cols: 4, pairs: 6 },
       medium: { cols: 4, pairs: 8 },
-      hard: { cols: 6, pairs: 12 }
+      hard: { cols: 6, pairs: 12 },
+      large: { cols: 6, pairs: 18 },
+      wide: { cols: 8, pairs: 24 },
+      expert: { cols: 8, pairs: 32 }
     };
 
     const state = {
@@ -416,6 +427,7 @@
     function renderBoard() {
       const level = LEVELS[state.difficulty];
       boardEl.style.setProperty("--cols", level.cols);
+      boardEl.style.setProperty("--gap", level.cols >= 8 ? "7px" : "10px");
       boardEl.innerHTML = "";
 
       state.cards.forEach((card, index) => {
@@ -510,7 +522,7 @@
         resetPick();
         setMessage("다시 시작합니다.");
         renderBoard();
-      }, 1200);
+      }, Math.min(2600, 900 + state.totalPairs * 45));
     }
 
     function newGame() {
