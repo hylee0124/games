@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hylee Games</title>
+  <style>
+    :root {
+      color: #172033;
+      background: #edf2f7;
+      font-family: "Segoe UI", "Noto Sans KR", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(226, 234, 243, 0.94)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23c6d2dd' stroke-width='1' opacity='.58'%3E%3Cpath d='M0 32h96M0 64h96M32 0v96M64 0v96'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .page {
+      width: min(1080px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 36px 0;
+    }
+
+    header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 8px 0 0;
+      color: #607086;
+      font-size: 15px;
+    }
+
+    .count {
+      min-width: 96px;
+      padding: 10px 13px;
+      border: 1px solid #d5dee8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.78);
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .game-card {
+      display: grid;
+      gap: 14px;
+      min-height: 230px;
+      padding: 18px;
+      border: 1px solid #d5dee8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 18px 45px rgba(45, 61, 79, 0.11);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .game-card:hover {
+      transform: translateY(-2px);
+      border-color: #9ecae8;
+      box-shadow: 0 22px 52px rgba(45, 61, 79, 0.15);
+    }
+
+    .thumb {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      aspect-ratio: 1.7;
+      overflow: hidden;
+      border: 2px solid #1d2d44;
+      border-radius: 6px;
+      background: #1d2d44;
+    }
+
+    .thumb span {
+      display: block;
+      border: 1px solid #c2cedb;
+      background: #fff;
+    }
+
+    .thumb span:nth-child(3n) {
+      border-right-color: #1d2d44;
+    }
+
+    .thumb span:nth-child(4n) {
+      background: #f0f4f8;
+    }
+
+    .thumb span:nth-child(7n) {
+      background: #cfe6f6;
+    }
+
+    .game-title {
+      margin: 0;
+      font-size: 21px;
+      font-weight: 850;
+    }
+
+    .game-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #eaf4fb;
+      color: #265675;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .description {
+      margin: 0;
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .play {
+      align-self: end;
+      color: #1476a8;
+      font-weight: 850;
+    }
+
+    @media (max-width: 720px) {
+      header {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .count {
+        width: fit-content;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div>
+        <h1>Hylee Games</h1>
+        <p class="subtitle">HTML5로 만든 가벼운 브라우저 게임 모음입니다.</p>
+      </div>
+      <div class="count">1 Game</div>
+    </header>
+
+    <section class="grid" aria-label="Game list">
+      <a class="game-card" href="./games/sudoku/">
+        <div class="thumb" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div>
+          <h2 class="game-title">Sudoku</h2>
+          <div class="game-meta">
+            <span class="tag">Puzzle</span>
+            <span class="tag">Keyboard</span>
+            <span class="tag">Single Player</span>
+          </div>
+        </div>
+        <p class="description">난이도 선택, 메모, 힌트, 검사 기능이 있는 간단한 스도쿠입니다.</p>
+        <span class="play">게임 시작</span>
+      </a>
+    </section>
+  </main>
+</body>
+</html>
