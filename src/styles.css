@@ -173,6 +173,23 @@ h1 {
   background: #cfe6f6;
 }
 
+.thumb-baseball {
+  grid-template-columns: repeat(5, 1fr);
+  background: #24344a;
+}
+
+.thumb-baseball span:nth-child(2n) {
+  background: #f9fbfd;
+}
+
+.thumb-baseball span:nth-child(5n + 1) {
+  background: #d9f0e4;
+}
+
+.thumb-baseball span:nth-child(7n) {
+  background: #f9d7dc;
+}
+
 .game-title {
   margin: 0;
   font-size: 21px;
@@ -406,6 +423,92 @@ h1 {
   cursor: crosshair;
 }
 
+.baseball-view .layout {
+  grid-template-columns: minmax(320px, 720px) minmax(280px, 1fr);
+}
+
+.baseball-board-wrap {
+  display: grid;
+  gap: 14px;
+}
+
+.baseball-display {
+  display: grid;
+  grid-template-columns: repeat(var(--digits, 5), minmax(0, 1fr));
+  gap: 10px;
+}
+
+.baseball-display span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border: 2px solid #cbd6e2;
+  border-radius: 8px;
+  background: #f9fbfd;
+  color: #172033;
+  font-size: 42px;
+  font-weight: 900;
+}
+
+.baseball-display span.filled {
+  border-color: #126b98;
+  background: #eaf4fb;
+}
+
+.baseball-pad {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.baseball-actions,
+.digit-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.guess-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.guess-list li {
+  display: grid;
+  grid-template-columns: 32px 1fr repeat(3, 42px);
+  gap: 8px;
+  align-items: center;
+  min-height: 42px;
+  padding: 8px;
+  border: 1px solid #d5dee8;
+  border-radius: 8px;
+  background: #f9fbfd;
+}
+
+.guess-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: #23364f;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.empty-history {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .panel-section + .panel-section {
   margin-top: 18px;
   padding-top: 18px;
@@ -580,11 +683,21 @@ h1 {
 
   .layout,
   .sudoku-view .layout,
-  .defense-view .layout {
+  .defense-view .layout,
+  .baseball-view .layout {
     grid-template-columns: 1fr;
   }
 
   .cell {
     font-size: 22px;
+  }
+
+  .baseball-display span {
+    font-size: 32px;
+  }
+
+  .guess-list li {
+    grid-template-columns: 28px 1fr repeat(3, 36px);
+    gap: 6px;
   }
 }
